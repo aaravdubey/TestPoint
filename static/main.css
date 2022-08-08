@@ -1,0 +1,52 @@
+#main{
+    border-bottom-left-radius: 20% ;
+    border-bottom-right-radius: 20% ;
+    background: linear-gradient(150deg, rgb(0, 40, 142) 0%, rgb(88, 224, 255) 100%);
+}
+
+.headNav{
+    padding: 2% 15%;
+}
+
+.brand-name{
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/*Search Bar*/
+.search-bar{
+    padding: 0 8px 0 0 ;
+}
+
+.form-control{
+    border: none;
+    background-color: white;
+    border: #1F4693;
+}
+.form-control:enabled{
+    box-shadow:none;
+
+}
+.search-btn{
+    border: none;
+    background-color:  white;
+    color: #1F4693;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.search-btn:hover{
+    color: white;
+    background-color: #1F4693;
+    border-color: #1F4693;
+}
+
+/*headContent*/
+.headContent{
+    padding: 3rem 15% 12rem;
+}
+.headContent p{
+    color: white;
+    font-size: 2.2rem;
+    padding-top: 2.5rem;
+    font-weight: bolder;
+}
