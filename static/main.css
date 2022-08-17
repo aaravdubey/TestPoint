@@ -1,7 +1,12 @@
+body{
+    background-color: rgb(246, 246, 246);
+}
+
+/* Main Section */
 #main{
     border-bottom-left-radius: 20% ;
     border-bottom-right-radius: 20% ;
-    background: linear-gradient(150deg, rgb(0, 40, 142) 0%, rgb(88, 224, 255) 100%);
+    background-color: #21222D;
 }
 
 .headNav{
@@ -11,6 +16,11 @@
 .brand-name{
     font-size: 2rem;
     font-weight: bold;
+}
+.logo{
+    background-color: #1F4693;
+    padding: 10px 7px 10px 10px;
+    border-radius: 30%;
 }
 
 /*Search Bar*/
@@ -42,11 +52,90 @@
 
 /*headContent*/
 .headContent{
-    padding: 3rem 15% 12rem;
+    padding: 2rem 15% ;
 }
 .headContent p{
     color: white;
     font-size: 2.2rem;
-    padding-top: 2.5rem;
+    padding-top: 3rem;
     font-weight: bolder;
+}
+.head-image{
+    /* margin-left: 7rem; */
+    height: 16rem;
+}
+
+
+/* Tests */
+#tests{
+    padding: 3% 15%;
+    overflow: hidden;
+}
+.card{
+    border: none;
+    box-shadow: 5px 10px 55px 10px #eeeef8;
+    transition: all 0.4s;
+}
+.card:hover{
+    box-shadow: 5px 10px 55px 10px #c6c6c6;
+}
+.card-img{
+    width: 100%;
+    height: 150px;
+    z-index: 5;
+}
+.card-img-overlay{
+    color: white;
+}
+.card-img-overlay .card-title{
+    border: solid white ;
+    border-width: 0 0 0 3px;
+    padding-left: 5px;
+}
+/* .card-img{
+    position: relative;
+    display: inline-block;
+}
+.card-img > img {
+    display: block;
+}
+.card-img::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0 0 50px rgb(255, 255, 255, 0.5);
+} */
+
+/* .slideshow{
+    padding: 0 15%;
+    margin-top: -4rem;
+}
+.card{
+    height: 18vh;
+    border-radius: 1rem;
+    border: none;
+    margin: 1rem 1.5rem;
+    box-shadow: 0 5px 5px 0 rgb(222, 222, 222);
+    background-color: rgb(255, 255, 255);
+} */
+
+/* Footer */
+.foot{
+    color: white;
+    background-color: #21222D;
+    padding: 1.5% 12% ; 
+    /* box-shadow: 0 0 100px 70px #37394a ; */
+}
+.copyright{
+    margin: 0;
+    float: right;
+    padding-top: 1%;
+}
+@media screen and (max-width: 1092px){
+    .copyright{
+        padding-top: 1.4;
+    }
 }
