@@ -1,0 +1,189 @@
+body{
+    background-color: rgb(246, 246, 246);
+}
+#header{
+    padding: 1% 15%;
+    background-color: #21222D;
+}
+.testname{
+    border: 0;
+    color: white;
+    background-color: #21222D;
+    font-size: xx-large;
+    font-weight: bold;
+}
+input[type=text]:focus{
+    outline: 0;
+}
+.create-btn{
+    border:0;
+    font-size: x-large;
+    margin: 0;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #1F4693;
+    color: white;
+}
+
+
+.questions-container{
+    padding: 1% 15% 3%;
+    overflow: hidden;
+}
+.card {
+    margin: 2% 0;
+    border: none;
+    box-shadow: 5px 10px 55px 10px #eeeef8;
+    transition: all 0.4s;
+}
+
+.card:hover {
+    box-shadow: 5px 10px 55px 10px #d1d0df;
+}
+textarea{
+    background-color:#F9FAF9;
+    border: 0;
+    resize: none;
+}
+textarea:focus{
+    outline: 0;
+    background-color:#F9FAF9;
+}
+/* .slider {
+    width: 100%;
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  } */
+  .slide {
+    /* border: solid 1px black; */
+    background-color: #ededed;
+    border-radius: 10px;
+    padding: 5px 12px 5px 0;
+    margin: 0.4rem 0.5rem 0 0;
+  }
+  .highlight{
+    background-color: #1F4693;
+    color: white;
+}
+
+.slider input[type=checkbox]{
+    opacity: 0;
+} 
+
+.card input[type=text]{
+    border-width: 0 0 1px 0;
+    font-size: larger;
+    margin:  0 0 1%;
+    padding: 0.5% 0;
+}
+.question{
+    background-color: #f9faf9;  
+}
+.question:hover{
+    background-color: #eeeeef;
+}
+.question:focus{
+    background-color:#eeeeef;
+}
+.removeQuestion{
+    border: 0;
+    background-color: white;
+    color: #757575;
+    font-size: larger;
+}
+.removeQuestion:hover{
+    color: rgb(254, 117, 117);
+}
+.removeOption{
+    margin-left: 5px;
+    border: 0;
+    width: 30px;
+    height: 30px;
+    font-size: large;
+    background-color: white;
+    color: #757575;
+}
+.removeOption:hover{
+    border-radius: 50%;
+    background-color: #eeeded;
+    font-size: large;
+}
+.op{
+    width: 25%;
+    border: solid 1px white;
+    border-width: 0 0 1px 0;
+}
+.op:hover{
+    border: solid 1px black;
+    border-width: 0 0 1px 0;
+}
+input[type=checkbox]{
+    transform: scale(1.8);
+}
+
+.marksdiv{
+    margin: 0 2%;
+}
+.marksCounter{
+    width: 2.65rem;
+    background-color: #F9FAF9;
+    border-radius: 5px;
+    border-width: 0 0 1px;
+    padding-left: 0.4rem;
+    font-size: large;
+}
+input[type=number]:focus{
+    border-radius: 5px;
+    outline: 0;
+}
+/* .op:focus{
+    border: solid 4px #1F4693;
+    border-width: 0 0 4px 0;
+} */
+.ansKey{
+    padding: 15px 0 0;
+    text-decoration: none;
+    color: #1F4693;
+}
+
+.list-group-item{
+    padding: 0;
+    border: 0;
+}
+.add-op-btn{
+    background-color: white;
+    border: solid 1px white;
+    border-width: 0 0 1px;
+    padding: 0;
+    color: #1F4693;
+    font-weight:500;
+    /* font-size: large; */
+}
+.add-op-btn:hover{
+    border: solid 1px #1F4693;
+    border-width: 0 0 1px;
+}
+
+.addQuest{
+    position: relative;
+    border: 0;
+    background-color: #1F4693;
+    padding: 5px 10px;
+    border-radius: 50%;
+    color: white;
+    box-shadow: 5px 10px 55px 10px #eeeef8;
+    transition: transform 0.3s;
+}
+.addQuest:hover{
+    transform: scale(1.1);
+}
+#btn-back-to-top{
+    background-color: #1F4693;
+    position: fixed;
+    font-size: x-large;
+    right: 5rem;
+    bottom: 3rem;
+    z-index: 20;
+  }
+
