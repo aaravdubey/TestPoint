@@ -1,0 +1,98 @@
+html, body{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+.grad-background {
+	background: linear-gradient(-45deg,#0b366e, #185675,  #262836);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	height: 100vh;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+body{
+    display: flex;
+}
+.card{
+    align-items: center;
+    width: fit-content;
+    padding: 1rem 4rem;
+    margin: auto;
+    text-align: center;
+    border-radius: 15px;
+}
+
+.title {
+    font-size: 2.2rem;
+    color: #444;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+
+  .input-field {
+    max-width: 380px;
+    width: 100%;
+    background-color: rgb(246, 246, 246);
+    margin: 10px 0;
+    height: 55px;
+    border-radius: 13px;
+    display: grid;
+    grid-template-columns: 15% 85%;
+    padding: 0 0.4rem;
+    position: relative;
+  }
+  
+  .input-field i {
+    text-align: center;
+    line-height: 55px;
+    color: #acacac;
+    transition: 0.5s;
+    font-size: 1.1rem;
+  }
+  
+  .input-field input {
+    background: none;
+    outline: none;
+    border: none;
+    line-height: 1;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #333;
+  }
+  
+  .input-field input::placeholder {
+    color: #aaa;
+    font-weight: 500;
+  }
+
+  .btn {
+    width: 150px;
+    background-color: #1F4693;
+    border: none;
+    outline: none;
+    height: 49px;
+    border-radius: 10px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 600;
+    display: block;
+    margin: auto;
+    /* margin: 10px 0; */
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .btn:hover {
+    background-color: #2d58ad;
+  }

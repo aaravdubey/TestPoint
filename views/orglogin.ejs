@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+    <!-- bootstrap cdn -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+  <link rel="stylesheet" href="loginorg.css" />
+  <title>Sign in & Sign up Form</title>
+</head>
+
+<body class="grad-background">
+  <div class="card" style="padding: 3rem 4rem;">
+    <div class="card-body" >
+      <form action="/orglogin" class="sign-up-form" method="post">
+        <h2 class="title">Org Sign In</h2>
+        <div class="input-field">
+          <i class="fas fa-envelope"></i>
+          <input type="email" placeholder="Email" name="email" required />
+        </div>
+        <div class="input-field">
+          <i class="fas fa-lock"></i>
+          <input type="password" placeholder="Password" id="pass" name="password" required />
+        </div>
+        <div style="color: red; visibility: hidden;" id="errorMssg"> Passwords do not match </div>
+        <input type="submit" class="btn" value="orglogin" name="button" />
+        <br>
+        <a href="/orgregister" style="text-decoration: none;"> Dont have an account? Sign Up. </a>
+        <br> 
+        <a href="/login" style="text-decoration: none;"> Sign in with an User account? </a>
+      </form>
+    </div>
+  </div>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+    integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+    integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
+    crossorigin="anonymous"></script>
+  <script src="JS\login.js"></script>
+</body>
+
+</html>

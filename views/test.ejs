@@ -21,14 +21,14 @@
 
 <body>
   <form action="/test" method="post">
-  <section id="header">
+  <section id="header" class="gradient-border1">
     <div class=" d-flex flex-row-reverse align-items-center">
       <div class="col-1" style="padding:0">
         <button class="create-btn d-flex justify-content-end " type="submit">Create</button>
       </div>
       <span id="totalCount" class="align-self-end" style="margin-right: 2%; "></span>
       <div class="flex-grow-1">
-          <a ><input type="text" name="testname" class="testname" id="testname" placeholder="Test Name"></a>
+          <a ><input type="text" name="testname" class="testname" id="testname" placeholder="Test Name" value="<%= email %>"> </a>
       </div>
       
     </div>
@@ -61,13 +61,29 @@
           <div class="slider" style="position: relative;">
             <label for="java" class="slide"   onclick="chkboxcss()"><input type="checkbox" name="techName[]" id="java" value="java" >Java</label>
             <label for="python" class="slide" onclick="chkboxcss()"><input type="checkbox" name="techName[]" id="python" value="python">Python</label>
-            <label for="c" class="slide"      onclick="chkboxcss()"><input type="checkbox" name="techName[]" id="c" value="c">C</label>
-            <label for="cpp" class="slide"    onclick="chkboxcss()"><input type="checkbox" name="techName[]" id="cpp" value="cpp">C++</label>
-            <label for="csharp" class="slide" onclick="chkboxcss()"><input type="checkbox" name="techName[]" id="csharp" value="csharp">C#</label>
             <label for="php" class="slide"    onclick="chkboxcss()"><input type="checkbox" name="techName[]" id="php" value="php">php</label>
+            <label for="js" class="slide"     onclick="chkboxcss()"><input type="checkbox" name="techName[]" id="js" value="square-js">Javascript</label>
+            <label for="go" class="slide"     onclick="chkboxcss()"><input type="checkbox" name="techName[]" id="go" value="golang">GO</label>
+            <label for="swift" class="slide"  onclick="chkboxcss()"><input type="checkbox" name="techName[]" id="swift" value="swift">Swift</label>
+            <label for="node" class="slide"  onclick="chkboxcss()"><input type="checkbox" name="techName[]" id="node" value="node-js">Node.js</label>
+            <label for="html" class="slide"  onclick="chkboxcss()"><input type="checkbox" name="techName[]" id="html" value="html5">HTML5</label>
+            <label for="css" class="slide"  onclick="chkboxcss()"><input type="checkbox" name="techName[]" id="css" value="css3">CSS3</label>
+            <label for="react" class="slide"  onclick="chkboxcss()"><input type="checkbox" name="techName[]" id="react" value="react">React</label>
+            <label for="angular" class="slide"  onclick="chkboxcss()"><input type="checkbox" name="techName[]" id="angular" value="angular">Angular</label>
+            <label for="android" class="slide"  onclick="chkboxcss()"><input type="checkbox" name="techName[]" id="android" value="android">Android</label>
+            <label for="iOS" class="slide"  onclick="chkboxcss()"><input type="checkbox" name="techName[]" id="iOS" value="apple">iOS</label>
+            <label for="windows" class="slide"  onclick="chkboxcss()"><input type="checkbox" name="techName[]" id="windows" value="windows">Windows</label>
+            <label for="linux" class="slide"  onclick="chkboxcss()"><input type="checkbox" name="techName[]" id="linux" value="linux">Linux</label>
+
+
+            
+
+
+
+
 
             <div style="display: inline-block; " id="inputBox">
-              <input type="text" name="" id="newSubName" class="slide" style="width: 4rem; font-size: medium; margin: 0; padding: 5px 5px; border: 0; border-top-right-radius: 0; border-bottom-right-radius: 0;"><button style="border-top-right-radius: 10px; border-bottom-right-radius: 10px; margin: 0; padding: 5px;  border: 0; background-color: gray; color: white;" type="button" onclick="addNewSub()" title="add new subject">+</button>
+              <input type="text" id="newSubName" class="slide" style="width: 4rem; font-size: medium; margin: 0; padding: 5px 5px; border: 0; border-top-right-radius: 0; border-bottom-right-radius: 0;"><button style="border-top-right-radius: 10px; border-bottom-right-radius: 10px; margin: 0; padding: 5px;  border: 0; background-color: rgb(166, 171, 190); color: white;" type="button" onclick="addNewSub()" title="add new subject">+</button>
             </div>
           </div>
           <!-- <div id="x">

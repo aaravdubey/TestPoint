@@ -20,10 +20,10 @@
 
 <body>
   <!-- Main Section -->
-  <section id="main">
+  <section id="main" class="gradient-border">
     <div class="navbar d-flex navbar-expand-lg navbar-dark headNav">
 
-      <a class="navbar-brand brand-name flex-grow-1" href=""> <i class="fa-solid fa-graduation-cap logo"></i> TestPoint
+      <a class="navbar-brand brand-name flex-grow-1" href=""> <i class="fa-solid fa-graduation-cap logo "></i> TestPoint
       </a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -35,8 +35,8 @@
       <div class="dropdown">
         <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
           data-bs-toggle="dropdown" aria-expanded="false">
-          <img src="Avatars\woman.png" alt="" width="32" height="32" class="rounded-circle me-2">
-          <strong>orgname</strong>
+          <img src="Images\Avatars\woman.png" alt="" width="32" height="32" class="rounded-circle me-2">
+          <strong><%= email %> </strong>
         </a>
         <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
           <li><a class="dropdown-item" href="#">Prev Tests</a></li>
@@ -92,7 +92,7 @@
       <div class="col-md-7 col-sm-6">
         <p>Lorem Ipsum ques intro si que desta tres minci grof nefaq istreta intro si desta uno dos quadri.</p>
       </div>
-      <div class="col-md-5 col-sm-6"><img src="Images\orghead.png" class="head-image" alt="" srcset="">
+      <div class="col-md-5 col-sm-6 "><img src="Images\orghead.png" class="head-image floating" alt="" srcset="">
       </div>
     </div>
   </section>
@@ -104,7 +104,7 @@
       <div class="d-flex align-items-center justify-content-end" style="position: relative;">
         <form class="navbar-form" role="search">
           <div class="input-group">
-            <input class="form-control me-2" id="myInput" type="search" placeholder="Search tests" aria-label="Search"
+            <input class="form-control me-2" id="myInput" type="search" placeholder="Search tests " aria-label="Search"
               onkeyup="search()">
           </div>
         </form>
@@ -115,9 +115,8 @@
       </div>
       <div class="row">
 
-        <% if ((tinfo.length) == 0) { %>
-          <div 
-            style="padding: 8% 0 10%; font-size: xx-large; color:grey; text-align: center;">
+        <% if ((tinfo.length)==0) { %>
+          <div style="padding: 8% 0 10%; font-size: xx-large; color:grey; text-align: center;">
             no tests created
           </div>
           <% } %>
@@ -131,17 +130,32 @@
                 <h5 class="card-title">TCX</h5>
               </div> -->
                   <div class="card-body">
-                    <h5 class="card-title">
+                    <h5 class="card-titlex">
                       <%= tinfo[index].test_name %>
                     </h5>
                     <p class="card-text">
                       <%= tinfo[index].test_desc %>
                     </p>
-                    <p class="card-text" style="color: #7DB6D5;">
-                      <%= tinfo[index].tech_name[0] %> 
-                      <% for( let i=1; i < tinfo[index].tech_name.length; i++ ) { %>
-                        <%= " | " + tinfo[index].tech_name[i] %> 
+                    <p class="card-text" style="color: #2179a8;">
+                      
+                      <% if (tinfo[index].tech_name[0] == "square-js") { %>
+                        <%= "javascript" %>
+                        <% } else if (tinfo[index].tech_name[0] == "node-js") { %>
+                          <%= "node.js" %>
+                          <% } else { %>
+                            <%= tinfo[index].tech_name[0] %>
+                            <% } %>
+
+                        <% for( let i=1; i < tinfo[index].tech_name.length; i++ ) { %>
+                          <% if (tinfo[index].tech_name[i] == "square-js") { %>
+                            <%= " | javascript" %>
+                            <% } else if (tinfo[index].tech_name[i] == "node-js") { %>
+                              <%= " | node.js" %>
+                              <% } else { %>
+                                <%= " | " + tinfo[index].tech_name[i] %>
+                                <% } %>
                       <% } %>
+                              
                     </p>
                     <!-- <a href="#" class="btn btn-primary">Give Test</a> -->
                   </div>
@@ -165,7 +179,7 @@
   </button>
 
   <!-- Footer Section -->
-  <section class="footer">
+  <section class="footer gradient-border1">
     <div class="row foot d-flex align-items-center">
       <div class="col-8">
         <h4 style="margin: 0;"><a class="navbar-brand " href="#head"> <i class="fa-solid fa-graduation-cap logo"></i>
@@ -188,6 +202,19 @@
     integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
     crossorigin="anonymous"></script>
   <script>
+    let subNames = ["java", "python", "php", "square-js", "golang", "swift", "node-js", "html5", "css3", "react", "angular", "android", "apple", "windows", "linux"];
+
+    let imgDivs = document.getElementsByClassName("image-div");
+    for (i = 0; i < imgDivs.length; i++) {
+      let iTag = imgDivs[i].querySelector("i");
+      let classNaam = iTag.className.slice(13);
+      if(!subNames.includes(classNaam)){
+        imgDivs[i].innerHTML = "<div style='color:white; font-size:60px; float: right; padding: 20.5px 10px'>"+classNaam+"</div>";
+      }
+    }
+
+
+
     let mybutton = document.getElementById("btn-back-to-top");
 
     // When the user scrolls down 20px from the top of the document, show the button
@@ -215,12 +242,13 @@
       cards = document.getElementsByClassName("col-lg-4 col-md-6 col-sm-6")
 
       for (i = 0; i < cards.length; i++) {
-        titles = cards[i].getElementsByClassName("card-title");
+        titlexs = cards[i].getElementsByClassName("card-titlex");
+        texts = cards[i].getElementsByClassName("card-text");
         if (filter === "") {
           cards[i].style.display = "block";
           document.getElementById('notestsmessage').style.display = "none";
         } else {
-          if (titles[0].innerHTML.toUpperCase().indexOf(filter) > -1 || (titles[1].innerHTML.toUpperCase().indexOf(filter) > -1)) {
+          if (titlexs[0].innerHTML.toUpperCase().indexOf(filter) > -1 || (texts[1].innerHTML.toUpperCase().indexOf(filter) > -1)) {
             cards[i].style.display = "";
             document.getElementById('notestsmessage').style.display = "none";
           } else {

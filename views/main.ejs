@@ -20,7 +20,7 @@
 
 <body>
   <!-- Main Section -->
-  <section id="main">
+  <section id="main" class="gradient-border">
     <div class="navbar d-flex navbar-expand-lg navbar-dark headNav">
 
       <a class="navbar-brand brand-name flex-grow-1" href=""> <i class="fa-solid fa-graduation-cap logo"></i> TestPoint
@@ -32,11 +32,11 @@
       </button>
 
 
-      <div class="col-sm-3 col-md-3 search-bar">
+      <div class="col-sm-2 col-md-2 search-bar">
         <form class="navbar-form" role="search">
-          <div class="input-group">
-            <input class="form-control me-2" id="myInput" type="search" placeholder="Search" aria-label="Search"
-              onkeyup="search()">
+          <div class="input-group" style="width: 11rem !important;">
+            <input class="form-control me-2" id="myInput" type="search" placeholder="Search tests" aria-label="Search"
+              onkeyup="search()" style="box-shadow: 0 0 0 0; ">
           </div>
         </form>
       </div>
@@ -44,17 +44,57 @@
       <div class="dropdown">
         <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
           data-bs-toggle="dropdown" aria-expanded="false">
-          <img src="Avatars\woman.png" alt="" width="32" height="32" class="rounded-circle me-2">
-          <strong>username</strong>
+          <img src="Images\Avatars\woman.png" alt="" width="32" height="32" class="rounded-circle me-2">
+          <strong><%= email %> </strong>
         </a>
         <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
           <li><a class="dropdown-item" href="#">Prev Tests</a></li>
-          <li><a class="dropdown-item" href="#">Profile</a></li>
+          <li><a class="dropdown-item" role="button" onclick="showProfile()" >Profile</a></li>
           <hr class="dropdown-divider" style="margin: 0;">
           <li><a class="dropdown-item" href="#">Sign out</a></li>
         </ul>
       </div>
 
+
+      <center>
+        <div class="box" id="profile">
+          <button style="color: white; float: left; background-color: rgba(0, 0, 0, 0); border: 0;" onclick="hideProfile()"><i class="fa-solid fa-xmark" style="padding:10px 0 0 10px;"></i></button>
+            <!-- <img src=""></image> -->
+            <br>
+            <div style=" color: white; font-size: xx-large; padding: 0 0 10px; margin-top: 8px;"> <span style="margin: auto;">Profile</span> </div>
+            <form action="/main" method="post">
+              <div class="input-field d-flex">
+                <label class="flex-grow-1" for="">Name: </label>
+                <input type="text" name="username" placeholder="User Name" value="<%= user.username %>">
+              </div>
+              <div class="input-field d-flex">
+                <label class="flex-grow-1" for="">Email: </label>
+                <input  type="email" name="Email" placeholder="abc123@gmail.com" value="<%= user.email %>" style="cursor: not-allowed;" disabled>
+              </div>
+              <div class="input-field d-flex">
+                <label class="flex-grow-1" for="">Contact: </label>
+                <input  type="text" name="contact" placeholder="0-9" value="<%= user.contact %>" >
+              </div>
+              <div class="input-field d-flex">
+                <label class="flex-grow-1" for="">City: </label>
+                <input  type="text" name="cityname" placeholder="Address(city name)" value="<%= user.city %>" >
+              </div>
+              <div class="input-field d-flex">
+                <label class="flex-grow-1" for="">Education: </label>
+                <input  type="text" name="education" placeholder="" value="<%= user.education %>">
+              </div>
+              <div class="input-fieldx d-flex">
+                <label class="flex-grow-1" for="">Experience: </label>
+                <textarea name="experience" id="" rows="3"><%= user.experience %></textarea>
+                <!-- <input  type="text" name="work experience" placeholder="200-300 words"> -->
+              </div>
+              <!-- <label for="file">EDIT PIC</PIc></label><br> -->
+              <button class="savebtn" >Save</button>
+            </form>
+
+        </div>
+        </div>
+      </center>
 
       <!-- <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
 
@@ -101,7 +141,7 @@
       <div class="col-md-7 col-sm-6">
         <p>Lorem Ipsum ques intro si que desta tres minci grof nefaq istreta intro si desta uno dos quadri.</p>
       </div>
-      <div class="col-md-5 col-sm-6"><img src="Images\5188349(colored)(clouds)1.png" class="head-image" alt=""
+      <div class="col-md-5 col-sm-6"><img src="Images\examgirl2.png" class="head-image floating" width="" alt=""
           srcset="">
       </div>
     </div>
@@ -124,11 +164,11 @@
                   <div class="image-div">
                     <i class="fa-brands fa-<%= tinfo[index].tech_name[0]%>"></i>
                   </div>
-                  <!-- <div class="card-img-overlay">
-                <h5 class="card-title">TCX</h5>
-              </div> -->
+                  <div class="card-img-overlay">
+                <h5 class="card-title"><%= tinfo[index].org_name%></h5>
+              </div>
                   <div class="card-body">
-                    <h5 class="card-title">
+                    <h5 class="card-titlex">
                       <%= tinfo[index].test_name %>
                     </h5>
                     <p class="card-text">
@@ -157,7 +197,7 @@
 
 
   <!-- Footer Section -->
-  <section class="footer">
+  <section class="footer gradient-border1" >
     <div class="row foot d-flex align-items-center">
       <div class="col-8">
         <h4><a class="navbar-brand " href="#head"> <i class="fa-solid fa-graduation-cap logo"></i> TestPoint </a></h4>
@@ -188,16 +228,33 @@
 
       for (i = 0; i < cards.length; i++) {
         titles = cards[i].getElementsByClassName("card-title");
+        titlexs = cards[i].getElementsByClassName("card-titlex");
+        texts = cards[i].getElementsByClassName("card-text");
+
+        console.log(titles + titlexs + texts);
+
         if (filter === "") {
           cards[i].style.display = "block";
+          document.getElementById('notestsmessage').style.display = "none";
         } else {
-          if (titles[0].innerHTML.toUpperCase().indexOf(filter) > -1 || (titles[1].innerHTML.toUpperCase().indexOf(filter) > -1)) {
+          if (titles[0].innerHTML.toUpperCase().indexOf(filter) > -1 || (titlexs[0].innerHTML.toUpperCase().indexOf(filter) > -1) || (texts[1].innerHTML.toUpperCase().indexOf(filter) > -1)) {
             cards[i].style.display = "";
+            document.getElementById('notestsmessage').style.display = "none";
           } else {
             cards[i].style.display = "none";
+            document.getElementById('notestsmessage').style.display = "block";
           }
         }
       }
+    }
+
+    function showProfile(){
+      let profileBox = document.getElementById('profile');
+      profileBox.classList.add("showbox");
+    }
+    function hideProfile(){
+      let profileBox = document.getElementById('profile');
+      profileBox.classList.remove("showbox");
     }
   </script>
 </body>

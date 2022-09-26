@@ -1,3 +1,4 @@
+
 let mybutton = document.getElementById("btn-back-to-top");
 
 // When the user scrolls down 20px from the top of the document, show the button
@@ -24,6 +25,7 @@ for (i = 0; i < allInps.length; i++) {
   allInps[i].setAttribute("required", "true");
   allInps[i].setAttribute("autocomplete", "off");
 }
+document.getElementById('newSubName').setAttribute("required", "false");
 
 function addNewSub() {
   let newSubName = String(document.getElementById('newSubName').value);
