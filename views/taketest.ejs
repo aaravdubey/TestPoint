@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TestPoint</title>
+
+  <!-- bootstrap cdn -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+  <!-- fontawesome script -->
+  <script src="https://kit.fontawesome.com/9e675ed628.js" crossorigin="anonymous"></script>
+
+  <!-- css file -->
+  <link rel="stylesheet" href="taketest.css">
+
+</head>
+
+<body>
+  <!-- Button trigger modal -->
+  <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  Launch static backdrop modal
+</button>  -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="staticBackdropLabel">Instructions</h3>
+
+        </div>
+        <div class="modal-body">
+          <pre value="Instructions" class="flex-grow-1" style="font-family: Verdana; font-size: 1.1rem;"><%= inst %></pre>
+        </div>
+        <div class="modal-footer">
+
+          <button type="button" class="create-btn" data-bs-dismiss="modal" >Start Test</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <form action="/taketest" method="post">
+    <section id="header" class="gradient-border1">
+      <div class=" d-flex flex-row-reverse align-items-center">
+        <div class="col-1" style="padding:0">
+          <button class="create-btn d-flex justify-content-end " type="submit">Submit</button>
+        </div>
+        <span id="totalCount" class="align-self-end" style="margin-right: 2%; "></span>
+        <div class="flex-grow-1">
+          <a class="testname" style="color: white; text-decoration: none;">
+            <%= tstname %> <a>
+        </div>
+
+      </div>
+    </section>
+    <!-- 
+  <nav aria-label="...">
+    <ul class="pagination pagination-lg">
+      <li class="page-item active" aria-current="page">
+        <span class="page-link">1</span>
+      </li>
+    </ul>
+  </nav> -->
+
+
+
+    <div class="container-fluid questions-container">
+
+      <div class="container-fluid" id="formulario">
+
+
+        <%for(i=0; i< arr.length-1; i++){ %>
+          <div class="card" id="questions[<%=i%>]">
+            <div class="card-body">
+
+
+              <% for(j=1; j< arr[i].length-2; j++){ %>
+                <div class="d-flex ">
+
+                  <span value="Question" class="question flex-grow-1">
+                    <%= arr[i][0] %>
+                  </span>
+                  <div class="align-self-center marksdiv">
+
+                    <span class="marksCounter">
+                      <%= arr[i][3] %> mark(s)
+                    </span>
+                  </div>
+
+                </div>
+                <ul class="list-group" style="padding: 0 1rem;">
+                  <% if(j==1){ %>
+                    <% for(k=0; k< arr[i][1].length; k++){ %>
+                      <li class="list-group-item" id="options[<%= i[k]%>]">
+                        <input type="checkbox" value="<%= arr[i][1][k] %>" class="correctAns" name="<%= i %>[]"
+                          id="op<%= i %><%= k %> ">
+                        <label for="op<%= i %><%= k %> " class="op" style="padding-left:5px; border-radius: 4px">
+                          <%= arr[i][1][k] %>
+                        </label>
+
+                      </li>
+                      <% } %>
+                        <% } %>
+                </ul>
+                <% } %>
+            </div>
+          </div>
+          <% } %>
+            <br>
+            <!-- <a type="button" class="ansKey" style="font-size: large;" onclick="answerKey('questions[0]');">
+            <i class="fa-solid fa-circle-check" style="padding-right: 5px;"></i>Answer Key</a>
+          </div>
+
+
+          <div class="card-body" style="display: none;">
+            <ul class="list-group list-group-flush">
+            </ul>
+          </div> -->
+      </div>
+    </div>
+    <!-- <input type="submit" id="sub" value="Confirm"> -->
+    </div>
+  </form>
+
+  <button type="button" onclick="topFunction()" style="display: none;" class="btn btn-primary btn-floating btn-lg " id="btn-back-to-top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+  <!-- bootstrap script -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+    integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+    integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
+    crossorigin="anonymous"></script>
+  <script src="JS\test.js"></script>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script>
+    window.onload = function () {
+      OpenBootstrapPopup();
+    };
+    function OpenBootstrapPopup() {
+      $("#staticBackdrop").modal('show');
+    }
+
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () { scrollFunction() };
+
+    function scrollFunction() {
+      let mybutton = document.getElementById("btn-back-to-top");
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        mybutton.style.display = "block";
+      } else {
+        mybutton.style.display = "none";
+      }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+  </script>
+
+</body>
+
+</html>

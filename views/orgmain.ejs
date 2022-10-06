@@ -39,12 +39,73 @@
           <strong><%= email %> </strong>
         </a>
         <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-          <li><a class="dropdown-item" href="#">Prev Tests</a></li>
-          <li><a class="dropdown-item" href="#">Profile</a></li>
+          <li><a class="dropdown-item" role="button" onclick="showProfile()">Profile</a></li>
           <hr class="dropdown-divider" style="margin: 0;">
-          <li><a class="dropdown-item" href="#">Sign out</a></li>
+          <li><a class="dropdown-item" href="/logout">Sign out</a></li>
         </ul>
       </div>
+
+      <center>
+        <div class="box" id="profile">
+          <!-- <button style="color: white; float: left; background-color: rgba(0, 0, 0, 0); border: 0;" onclick="hideProfile()"><i class="fa-solid fa-xmark" style="padding:10px 0 0 10px;"></i></button> -->
+          <!-- <img src=""></image> -->
+          <br>
+          <form action="/" method="post" style="width: 100%;">
+            <table>
+              <caption style="caption-side: top; text-align: center; color:white; font-size: xx-large; font-weight: bold; margin-bottom: 10px;">Profile</caption>
+              <tr>
+                <td>
+                  <label for="">Name: </label>
+                </td>
+                <td><input width="100%" type="text" name="orgname" placeholder="User Name"
+                    value="<%= org.orgname %>">
+                </td>
+              </tr>
+              <tr>
+                <td><label for="">Email: </label>
+                </td>
+                <td><input type="email" placeholder="abc123@gmail.com" value="<%= org.orgemail %>"
+                    style="cursor: not-allowed;" disabled>
+                </td>
+              </tr>
+              <tr>
+                <td><label for="">Contact: </label>
+                </td>
+                <td><input type="text" name="orgcontact" placeholder="0-9" value="<%= org.orgcontact %>">
+                </td>
+              </tr>
+              <tr>
+                <td><label for="">City: </label>
+                </td>
+                <td><input type="text" name="orgcityname" placeholder="Address(city name)" value="<%= org.orgcity %>">
+                </td>
+              </tr>
+              <tr>
+                <td><label for="">About: </label>
+                </td>
+                <td><textarea name="orgabout" id="" rows="5"><%= org.orgabout %></textarea>
+                </td>
+              </tr>
+              <!-- <tr>
+                <td><label for="">Education: </label>
+                </td>
+                <td><textarea name="education" id="" rows="4"><%= org.education %></textarea>
+                </td>
+              </tr>
+              <tr>
+                <td><label for="">Experience: </label>
+                </td>
+                <td><textarea name="experience" id="" rows="4"><%= org.experience %></textarea>
+                </td>
+              </tr> -->
+            </table>
+            <button class="closebtn" type="button" onclick="hideProfile()"><b>Close</b></button>
+            <button class="savebtn"><b>Save</b></button>
+            `
+          </form>
+        </div>
+    
+    </center>
 
 
       <!-- <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
@@ -84,7 +145,6 @@
 
 
     </div>
-    </div>
 
 
     <!-- Head Content -->
@@ -122,10 +182,15 @@
           <% } %>
             <% for( let index=0; index < tinfo.length; index++ ) { %>
               <div class="col-lg-4 col-md-6 col-sm-6">
+                <form action="/leaderboard" method="post">
+                  <button style="padding: 0; margin:0; border:0; text-align: left; background-color: rgba(0, 0, 0, 0);">
                 <div class="card">
                   <div class="image-div">
                     <i class="fa-brands fa-<%= tinfo[index].tech_name[0]%>"></i>
                   </div>
+                  <form action="/leaderboard" method="post">
+                    <input type="text" style="visibility: hidden; position:absolute; right:0" value="<%= tinfo[index].id%>" name="test_id">
+                  </form>
                   <!-- <div class="card-img-overlay">
                 <h5 class="card-title">TCX</h5>
               </div> -->
@@ -160,6 +225,8 @@
                     <!-- <a href="#" class="btn btn-primary">Give Test</a> -->
                   </div>
                 </div>
+              </button>
+            </form>
               </div>
               <% } %>
 
@@ -174,7 +241,7 @@
     </div>
   </section>
 
-  <button type="button" onclick="topFunction()" class="btn btn-primary btn-floating btn-lg " id="btn-back-to-top">
+  <button type="button" onclick="topFunction()" style="display: none;" class="btn btn-primary btn-floating btn-lg " id="btn-back-to-top">
     <i class="fas fa-arrow-up"></i>
   </button>
 
@@ -257,6 +324,16 @@
           }
         }
       }
+    }
+    function showProfile(){
+      let profileBox = document.getElementById('profile');
+      profileBox.style.width = "450px";
+      profileBox.style.boxShadow = "2px 6px 15px 5px rgba(101,  102, 104, 0.5)";
+    }
+    function hideProfile(){
+      let profileBox = document.getElementById('profile');
+      profileBox.style.width = "0px";
+      profileBox.style.boxShadow = "";
     }
   </script>
 </body>

@@ -12,25 +12,26 @@
 <body>
   <div class="container ">
     <div class="forms-container">
-      
+
       <div class="signin-signup">
-        
+
         <form action="/login" class="sign-in-form" method="post">
-          <div id="box" style="visibility: <%= displayError %>;" >
-            The Email is already registered. Please Log in.
+          <div id="box" style="visibility: <%= displayError %>;">
+            <%= errorMssg %>
           </div>
           <h2 class="title">Sign in</h2>
           <div class="input-field">
             <i class="fas fa-user"></i>
-            <input type="email" placeholder="Email" name="email" required/>
+            <input type="email" placeholder="Email" name="email" required />
           </div>
           <div class="input-field">
             <i class="fas fa-lock"></i>
-            <input type="password" placeholder="Password" name="password" requireds/>
+            <input type="password" placeholder="Password" name="password" requireds />
           </div>
           <input type="submit" value="login" class="btn solid" name="button" />
           <br>
-        <a href="/orglogin" style="text-decoration: none;"> Sign in with an Organization account? </a>
+          <a href="/validateEmail" style="text-decoration: none; line-height: 2.2;"> Forgot Pass? Reset Password. </a>
+          <a href="/orglogin" style="text-decoration: none;"> Sign in with an Organization account? </a>
         </form>
 
         <form action="/login" class="sign-up-form" method="post">
@@ -53,7 +54,8 @@
           </div>
           <div class="input-field">
             <i class="fas fa-lock"></i>
-            <input type="password" placeholder="Confirm Password" id="confirmPass" onkeyup="confirmPassFunc();" required />
+            <input type="password" placeholder="Confirm Password" id="confirmPass" onkeyup="confirmPassFunc();"
+              required />
           </div>
           <div style="color: red; visibility: hidden;" id="errorMssg"> Passwords do not match </div>
           <input type="submit" class="btn" value="register" name="button" />
@@ -74,7 +76,7 @@
             Sign up
           </button>
         </div>
-        
+
         <img src="Images\6184159_3094352.png" class="image" alt="" />
       </div>
       <div class="panel right-panel">
@@ -92,9 +94,9 @@
       </div>
     </div>
   </div>
-  
 
-  
+
+
 
   <script src="JS\login.js"></script>
 </body>

@@ -13,38 +13,49 @@
 </head>
 
 <body class="grad-background">
-  <div class="card">
-    <div class="card-body" >
-      <form action="/orglogin" class="sign-up-form" method="post">
-        <h2 class="title">Org Sign up</h2>
-        <div class="input-field">
-          <i class="fas fa-user"></i>
-          <input type="text" placeholder="Username" name="username" required />
+  <div class="card mb-3" style="margin: 0; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 77%;">
+    <div class="row g-8">
+      <div class="col-md-6">
+        <img src="Images\Screenshot (263).png" class="img-fluid rounded-start" alt="..." style=" height: 100%">
+      </div>
+      <div class="col-md-6" style="display: flex;">
+        <div class="card-body" style="margin: auto;">
+          <form action="/orglogin" class="sign-up-form" method="post">
+            <h2 class="title">Org Sign up</h2>
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              <input type="text" placeholder="Username" name="username" required />
+            </div>
+            <div class="input-field">
+              <i class="fas fa-envelope"></i>
+              <input type="email" placeholder="Email" name="email" required />
+            </div>
+            <div class="input-field">
+              <i class="fas fa-phone-alt"></i>
+              <input type="tel" placeholder="Contact No." name="contact" required />
+            </div>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              <input type="password" placeholder="Password" id="pass" name="password" required />
+            </div>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              <input type="password" placeholder="Confirm Password" id="confirmPass" onkeyup="confirmPassFunc();" required />
+            </div>
+            <div style="color: red; visibility: hidden;" id="errorMssg"> Passwords do not match </div>
+            <input type="submit" class="btn" value="orgregister" name="button" />
+            <br>
+            <a href="/orglogin" style="text-decoration: none;"> Already have an account? Sign In. </a>
+    
+          </form>
         </div>
-        <div class="input-field">
-          <i class="fas fa-envelope"></i>
-          <input type="email" placeholder="Email" name="email" required />
-        </div>
-        <div class="input-field">
-          <i class="fas fa-phone-alt"></i>
-          <input type="tel" placeholder="Contact No." name="contact" required />
-        </div>
-        <div class="input-field">
-          <i class="fas fa-lock"></i>
-          <input type="password" placeholder="Password" id="pass" name="password" required />
-        </div>
-        <div class="input-field">
-          <i class="fas fa-lock"></i>
-          <input type="password" placeholder="Confirm Password" id="confirmPass" onkeyup="confirmPassFunc();" required />
-        </div>
-        <div style="color: red; visibility: hidden;" id="errorMssg"> Passwords do not match </div>
-        <input type="submit" class="btn" value="orgregister" name="button" />
-        <br>
-        <a href="/orglogin" style="text-decoration: none;"> Already have an account? Sign In. </a>
-
-      </form>
+      </div>
     </div>
   </div>
+
+
+
+
 
   
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"

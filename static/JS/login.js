@@ -6,8 +6,8 @@ setTimeout(() => {
 
   // 👇️ hides element (still takes up space on page)
   box.style.visibility = 'hidden';
-  console.log("here");
-}, 2000);
+}, 3000);
+
 
 const sign_in_btn = document.querySelector("#sign-in-btn");
 const sign_up_btn = document.querySelector("#sign-up-btn");

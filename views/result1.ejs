@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TestPoint</title>
+
+  <!-- bootstrap cdn -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+  <!-- css file -->
+  <link rel="stylesheet" href="result1.css">
+
+  <!-- fontawesome script -->
+  <script src="https://kit.fontawesome.com/9e675ed628.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <!-- Main Section -->
+  <section id="main" class="gradient-border1">
+    <div class="navbar d-flex navbar-expand-lg navbar-dark headNav">
+
+      <a class="navbar-brand brand-name flex-grow-1" href="/main"> <i class="fa-solid fa-graduation-cap logo"></i> TestPoint
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+
+
+      <div class="">
+        <a href="#" class="d-flex align-items-center text-white text-decoration-none "
+          data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="Images\Avatars\woman.png" alt="" width="32" height="32" class="rounded-circle me-2">
+          <strong><%= username %></strong>
+        </a>
+        <!-- <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+          <li><a class="dropdown-item" href="#">Prev Tests</a></li>
+          <li><a class="dropdown-item" role="button" onclick="showProfile()" >Profile</a></li>
+          <hr class="dropdown-divider" style="margin: 0;">
+          <li><a class="dropdown-item" href="#">Sign out</a></li>
+        </ul> -->
+      </div>
+
+
+      <!-- <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
+
+          <div class="col-sm-3 col-md-3 search-bar">
+            <form class="navbar-form" role="search">
+              <div class="input-group">
+                <input class="form-control me-2" id="myInput" type="search" placeholder="Search" aria-label="Search"
+                  onkeyup="search()">
+              </div>
+            </form>
+          </div>
+
+
+        <div class="dropdown">
+          <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="static\Images\Avatars\woman.png" alt="" width="32" height="32" class="rounded-circle me-2">
+            <strong>username</strong>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+            <li><a class="dropdown-item" href="#">Prev Tests</a></li>
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+              <hr class="dropdown-divider" style="margin: 0;">
+            <li><a class="dropdown-item" href="#">Sign out</a></li>
+          </ul>
+        </div>
+      </div> -->
+
+      <!-- <titles class="nav-item">
+            <a class="nav-link " href="#location-card">Test Scores</a>
+          </titles>
+          <titles class="nav-item">
+            <a class="nav-link" href="">Profile</a>
+          </titles> -->
+
+
+
+    </div>
+    </div>
+    </section>
+
+
+
+
+  <!-- Test Cards Section -->
+  <section id="tests">
+    <div class="container-fluid">
+        
+      <div class="row">
+
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <h3 style="padding-left: 1.5%;">Results</h3>
+          <% if(resultpage.length == 0){ %> 
+            <div style="padding: 8% 0 10%; font-size: xx-large; color:grey; text-align: center; ">
+              no tests results
+            </div>
+          <% } else { %>
+          <% for( let index = 0; index < resultpage.length; index++ ) { %>
+            <div class="card">
+                <div class="card-body d-flex"> 
+                 <div class = "flex-grow-1"> 
+                    <h5 class="card-title" style="display: inline;"><%=resultpage[index].test_name%></h5> &ensp; <span style="color: lightgray;"> <%= resultpage[index].date %> &ensp;  <%= resultpage[index].time %></span>               
+                    
+                    <form action="/leaderboard" method="post">
+                      <button class="leaderbbtn" role="">View Leaderboard</button>
+                      <input type="text" name="test_id" style="visibility: hidden;" value="<%=resultpage[index].test_id%>">
+                    </form>
+                    
+                </div>
+                  <div> 
+                    <span style="font-size: xx-large;"><span style="color:#397494 ;"><%= resultpage[index].marks %></span> / <%= resultpage[index].totalmarks %> </span>  <br>
+                  </div>
+                </div>
+              </div>
+          <% } %>
+          <% } %>
+        </div>
+      </div>
+
+      </div>
+  </section>
+
+
+
+  <!-- Footer Section -->
+  <section class="footer" >
+    <div class="row foot d-flex align-items-center">
+      <div class="col-8">
+        <h4><a class="navbar-brand " href="#head"> <i class="fa-solid fa-graduation-cap logo"></i> TestPoint </a></h4>
+      </div>
+      <div class="col-4">
+        <h5 class="copyright d-flex justify-content-end align-items-center">© 2022 TestPoint</h5>
+      </div>
+
+    </div>
+  </section>
+
+
+
+  <!-- bootstrap script -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+    integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+    integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
+    crossorigin="anonymous"></script>
+  <script>
+    function search() {
+      // Declare variables
+      var input, filter;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      cards = document.getElementsByClassName("col-lg-4 col-md-6 col-sm-6")
+
+      for (i = 0; i < cards.length; i++) {
+        titles = cards[i].getElementsByClassName("card-title");
+        titlexs = cards[i].getElementsByClassName("card-titlex");
+        texts = cards[i].getElementsByClassName("card-text");
+
+        console.log(titles + titlexs + texts);
+
+        if (filter === "") {
+          cards[i].style.display = "block";
+          document.getElementById('notestsmessage').style.display = "none";
+        } else {
+          if (titles[0].innerHTML.toUpperCase().indexOf(filter) > -1 || (titlexs[0].innerHTML.toUpperCase().indexOf(filter) > -1) || (texts[1].innerHTML.toUpperCase().indexOf(filter) > -1)) {
+            cards[i].style.display = "";
+            document.getElementById('notestsmessage').style.display = "none";
+          } else {
+            cards[i].style.display = "none";
+            document.getElementById('notestsmessage').style.display = "block";
+          }
+        }
+      }
+    }
+
+    function showProfile(){
+      let profileBox = document.getElementById('profile');
+      profileBox.classList.add("showbox");
+    }
+    function hideProfile(){
+      let profileBox = document.getElementById('profile');
+      profileBox.classList.remove("showbox");
+    }
+  </script>
+</body>
+
+</html>

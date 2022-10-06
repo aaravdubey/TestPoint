@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>TestPoint</title>
 
   <!-- bootstrap cdn -->
@@ -35,7 +36,7 @@
       <div class="col-sm-2 col-md-2 search-bar">
         <form class="navbar-form" role="search">
           <div class="input-group" style="width: 11rem !important;">
-            <input class="form-control me-2" id="myInput" type="search" placeholder="Search tests" aria-label="Search"
+            <input class="form-control me-2" id="myInput" type="search" placeholder="Search tests.." aria-label="Search"
               onkeyup="search()" style="box-shadow: 0 0 0 0; ">
           </div>
         </form>
@@ -45,95 +46,82 @@
         <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
           data-bs-toggle="dropdown" aria-expanded="false">
           <img src="Images\Avatars\woman.png" alt="" width="32" height="32" class="rounded-circle me-2">
-          <strong><%= email %> </strong>
+          <strong>
+            <%= user.username %>
+          </strong>
         </a>
         <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-          <li><a class="dropdown-item" href="#">Prev Tests</a></li>
-          <li><a class="dropdown-item" role="button" onclick="showProfile()" >Profile</a></li>
+          <li><a class="dropdown-item" href="/result">Prev Tests</a></li>
+          <li><a class="dropdown-item" role="button" onclick="showProfile()">Profile</a></li>
           <hr class="dropdown-divider" style="margin: 0;">
-          <li><a class="dropdown-item" href="#">Sign out</a></li>
+          <li><a class="dropdown-item" href="/logout">Sign out</a></li>
         </ul>
       </div>
 
 
       <center>
         <div class="box" id="profile">
-          <button style="color: white; float: left; background-color: rgba(0, 0, 0, 0); border: 0;" onclick="hideProfile()"><i class="fa-solid fa-xmark" style="padding:10px 0 0 10px;"></i></button>
-            <!-- <img src=""></image> -->
-            <br>
-            <div style=" color: white; font-size: xx-large; padding: 0 0 10px; margin-top: 8px;"> <span style="margin: auto;">Profile</span> </div>
-            <form action="/main" method="post">
-              <div class="input-field d-flex">
-                <label class="flex-grow-1" for="">Name: </label>
-                <input type="text" name="username" placeholder="User Name" value="<%= user.username %>">
-              </div>
-              <div class="input-field d-flex">
-                <label class="flex-grow-1" for="">Email: </label>
-                <input  type="email" name="Email" placeholder="abc123@gmail.com" value="<%= user.email %>" style="cursor: not-allowed;" disabled>
-              </div>
-              <div class="input-field d-flex">
-                <label class="flex-grow-1" for="">Contact: </label>
-                <input  type="text" name="contact" placeholder="0-9" value="<%= user.contact %>" >
-              </div>
-              <div class="input-field d-flex">
-                <label class="flex-grow-1" for="">City: </label>
-                <input  type="text" name="cityname" placeholder="Address(city name)" value="<%= user.city %>" >
-              </div>
-              <div class="input-field d-flex">
-                <label class="flex-grow-1" for="">Education: </label>
-                <input  type="text" name="education" placeholder="" value="<%= user.education %>">
-              </div>
-              <div class="input-fieldx d-flex">
-                <label class="flex-grow-1" for="">Experience: </label>
-                <textarea name="experience" id="" rows="3"><%= user.experience %></textarea>
-                <!-- <input  type="text" name="work experience" placeholder="200-300 words"> -->
-              </div>
-              <!-- <label for="file">EDIT PIC</PIc></label><br> -->
-              <button class="savebtn" >Save</button>
-            </form>
-
+          <!-- <button style="color: white; float: left; background-color: rgba(0, 0, 0, 0); border: 0;" onclick="hideProfile()"><i class="fa-solid fa-xmark" style="padding:10px 0 0 10px;"></i></button> -->
+          <!-- <img src=""></image> -->
+          <br>
+          <!-- <div style=" color:white; font-size: xx-large; padding: 0 0 10px; font-weight: bold; ">  </div> -->
+          <form action="/main" method="post" style="width: 100%;">
+            <table >
+              <caption style="caption-side: top; text-align: center; color:white; font-size: xx-large; font-weight: bold;">Profile</caption>
+              <tr>
+                <td>
+                  <label for="">Name: </label>
+                </td>
+                <td><input width="100%" type="text" name="username" placeholder="User Name"
+                    value="<%= user.username %>">
+                </td>
+              </tr>
+              <tr>
+                <td><label for="">Email: </label>
+                </td>
+                <td><input type="email" name="Email" placeholder="abc123@gmail.com" value="<%= user.email %>"
+                    style="cursor: not-allowed;" disabled>
+                </td>
+              </tr>
+              <tr>
+                <td><label for="">Contact: </label>
+                </td>
+                <td><input type="text" name="contact" placeholder="0-9" value="<%= user.contact %>">
+                </td>
+              </tr>
+              <tr>
+                <td><label for="">City: </label>
+                </td>
+                <td><input type="text" name="cityname" placeholder="Address(city name)" value="<%= user.city %>">
+                </td>
+              </tr>
+              <tr>
+                <td><label for="">About: </label>
+                </td>
+                <td><textarea name="about" id="" rows="2"></textarea>
+                </td>
+              </tr>
+              <tr>
+                <td><label for="">Education: </label>
+                </td>
+                <td><textarea name="education" id="" rows="2"><%= user.education %></textarea>
+                </td>
+              </tr>
+              <tr>
+                <td><label for="">Experience: </label>
+                </td>
+                <td><textarea name="experience" id="" rows="2"><%= user.experience %></textarea>
+                </td>
+              </tr>
+            </table>
+            <button class="closebtn" type="button" onclick="hideProfile()"><b>Close</b></button>
+            <button class="savebtn"><b>Save</b></button>
+            
+          </form>
         </div>
-        </div>
-      </center>
-
-      <!-- <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
-
-          <div class="col-sm-3 col-md-3 search-bar">
-            <form class="navbar-form" role="search">
-              <div class="input-group">
-                <input class="form-control me-2" id="myInput" type="search" placeholder="Search" aria-label="Search"
-                  onkeyup="search()">
-              </div>
-            </form>
-          </div>
-
-
-        <div class="dropdown">
-          <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-            data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="static\Images\Avatars\woman.png" alt="" width="32" height="32" class="rounded-circle me-2">
-            <strong>username</strong>
-          </a>
-          <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-            <li><a class="dropdown-item" href="#">Prev Tests</a></li>
-            <li><a class="dropdown-item" href="#">Profile</a></li>
-              <hr class="dropdown-divider" style="margin: 0;">
-            <li><a class="dropdown-item" href="#">Sign out</a></li>
-          </ul>
-        </div>
-      </div> -->
-
-      <!-- <titles class="nav-item">
-            <a class="nav-link " href="#location-card">Test Scores</a>
-          </titles>
-          <titles class="nav-item">
-            <a class="nav-link" href="">Profile</a>
-          </titles> -->
-
-
-
-    </div>
-    </div>
+    
+    </center>
+  </div>
 
 
     <!-- Head Content -->
@@ -154,35 +142,45 @@
       <div class="row">
 
         <% if ((tinfo.length)==0) { %>
-          <div style="padding: 8% 0 10%; font-size: xx-large; color:grey; text-align: center;">
+          <div style="padding: 8% 0 10%; font-size: xx-large; color:grey; text-align: center; ">
             no tests created
           </div>
           <% } %>
             <% for( let index=0; index < tinfo.length; index++ ) { %>
               <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="card">
-                  <div class="image-div">
-                    <i class="fa-brands fa-<%= tinfo[index].tech_name[0]%>"></i>
-                  </div>
-                  <div class="card-img-overlay">
-                <h5 class="card-title"><%= tinfo[index].org_name%></h5>
-              </div>
-                  <div class="card-body">
-                    <h5 class="card-titlex">
-                      <%= tinfo[index].test_name %>
-                    </h5>
-                    <p class="card-text">
-                      <%= tinfo[index].test_desc %>
-                    </p>
-                    <p class="card-text" style="color: #7DB6D5;">
-                      <%= tinfo[index].tech_name[0] %>
-                        <% for( let i=1; i < tinfo[index].tech_name.length; i++ ) { %>
-                          <%= " | " + tinfo[index].tech_name[i] %>
-                            <% } %>
-                    </p>
-                    <!-- <a href="#" class="btn btn-primary">Give Test</a> -->
-                  </div>
-                </div>
+                <form action="/redirectToTest" method="post">
+                  <button style="padding: 0; margin:0; border:0; text-align: left; background-color: rgba(0, 0, 0, 0);">
+                    <div class="card">
+                      <div class="image-div">
+                        <i class="fa-brands fa-<%= tinfo[index].tech_name[0]%>"></i>
+                      </div>
+                      <form action="/redirectToTest" method="post">
+                        <input type="text" style="visibility: hidden; position:absolute; right:0"
+                          value="<%= tinfo[index].id%>" name="testid">
+                      </form>
+                      <div class="card-img-overlay">
+                        <h5 class="card-title">
+                          <%= tinfo[index].org_name%>
+                        </h5>
+                      </div>
+                      <div class="card-body">
+                        <h5 class="card-titlex">
+                          <%= tinfo[index].test_name %>
+                        </h5>
+                        <p class="card-text">
+                          <%= tinfo[index].test_desc %>
+                        </p>
+                        <p class="card-text" style="color: #7DB6D5;">
+                          <%= tinfo[index].tech_name[0] %>
+                            <% for( let i=1; i < tinfo[index].tech_name.length; i++ ) { %>
+                              <%= " | " + tinfo[index].tech_name[i] %>
+                                <% } %>
+                        </p>
+                        <!-- <a href="#" class="btn btn-primary">Give Test</a> -->
+                      </div>
+                    </div>
+                  </button>
+                </form>
               </div>
               <% } %>
 
@@ -197,7 +195,7 @@
 
 
   <!-- Footer Section -->
-  <section class="footer gradient-border1" >
+  <section class="footer gradient-border1">
     <div class="row foot d-flex align-items-center">
       <div class="col-8">
         <h4><a class="navbar-brand " href="#head"> <i class="fa-solid fa-graduation-cap logo"></i> TestPoint </a></h4>
@@ -248,13 +246,15 @@
       }
     }
 
-    function showProfile(){
+    function showProfile() {
       let profileBox = document.getElementById('profile');
-      profileBox.classList.add("showbox");
+      profileBox.style.width = "450px";
+      profileBox.style.boxShadow = "2px 6px 15px 5px rgba(101,  102, 104, 0.5)";
     }
-    function hideProfile(){
+    function hideProfile() {
       let profileBox = document.getElementById('profile');
-      profileBox.classList.remove("showbox");
+      profileBox.style.width = "0px";
+      profileBox.style.boxShadow = "";
     }
   </script>
 </body>
