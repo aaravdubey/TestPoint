@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const gpass = 'ijtmoqnicshfidzy';
 const otpGenerator = require('otp-generator');
+var AvatarGenerator = require('initials-avatar-generator').AvatarGenerator;
 const mongoose = require('mongoose');
 var crypto = require('crypto');
 var uuid = require('node-uuid');
@@ -37,6 +38,7 @@ const testSchema = mongoose.Schema({
     test_name: String,
     test_desc: String,
     test_inst: String,
+    test_duration: Number,
     tech_name: Array
 });
 const Test = mongoose.model("test", testSchema);
@@ -93,11 +95,13 @@ app.get('/taketest', async function (req, res) {
                 console.log(err);
             } else {
                 let arr = JSON.parse(test.questions);
+                // console.log(arr);
                 res.render('taketest', {
                     arr: arr,
                     tstname: test.test_name,
                     desc: test.test_desc,
                     inst: test.test_inst,
+                    timex: test.test_duration
                 });
                 // console.log(arr[1][1][0]);
             }
@@ -115,15 +119,18 @@ app.post('/taketest', async function (req, res) {
     let org_email = "";
     let test_id = "";
     let test_name = "";
-    await Test.findById({ _id: "63316dc5f66da159efa5378e" }, function (err, test) {
+    
+    await Test.findById({ _id: req.session.testid }, function (err, test) {
         if (err) {
             console.log(err);
         } else {
+            console.log(req.body);
+            console.log(test);
             org_email = test.org_email;
             test_id = test.id;
             test_name = test.test_name;
             let arr = JSON.parse(test.questions);
-            for (i = 0; i < arr.length - 1; i++) {
+            for (i = 0; i < arr.length - 2; i++) {
                 //console.log(req.body[i]);
                 totalmarks += parseInt(arr[i][3]);
                 if (req.body[i].length == arr[i][2].length) {
@@ -181,7 +188,7 @@ app.get("/lead", async (req, res) => {
 
 app.post('/leaderboard', async function (req, res) {
     req.session.testidforleaderb = req.body.test_id;
-    res.redirect("/lead")
+    res.redirect("/lead");
 })
 
 
@@ -253,6 +260,15 @@ app.get("/main", (req, res) => {
                     console.log(err);
                 }
                 else {
+                    // var option = {
+                    //     width: 100,
+                    //     text: 'JL',
+                    //     color: '#FFFFFF'
+                    //   };
+                    //   var avatarGenerator = new AvatarGenerator();
+                    //   avatarGenerator.generate(option, function (image) {
+                        
+                    //   });
                     // var cookies = new Cookies(req, res, { keys: ['aarav key'] });
                     // var email = cookies.get('email', { signed: true });
                     if (req.session.validLogin != null) {
@@ -268,7 +284,6 @@ app.get("/main", (req, res) => {
             });
         }
     })
-
 })
 
 app.post("/main", (req, res) => {
@@ -281,7 +296,6 @@ app.post("/main", (req, res) => {
         }
     })
 })
-
 
 
 app.listen(3000, () => {
@@ -317,6 +331,7 @@ app.post("/test", (req, res) => {
                     test_name: req.body.testname,
                     test_desc: req.body.description,
                     test_inst: req.body.instructions,
+                    test_duration: req.body.duration,
                     tech_name: req.body.techName
                 });
                 newTest.save();
@@ -349,6 +364,20 @@ app.get("/validateEmail", (req, res) => {
 let otp;
 app.post("/generateOtp", (req, res) => {
 
+    Otp.exists({email: req.body.email}, function (err, doc) {
+        if (err){
+            console.log(err)
+        }else{
+            if (doc != null){
+                Otp.deleteMany({email: req.body.email}, (err, res)=>{
+                    if (err){
+                        console.log(err);
+                    }
+                })
+            }
+        }
+    });
+    // console.log(ifExists + " if Exists");
     var transporter = nodemailer.createTransport({
         host: 'smtp.gmail.com',
         port: 465,
@@ -359,12 +388,7 @@ app.post("/generateOtp", (req, res) => {
         }
     });
 
-    var mailOptions = {
-        from: 'daarav101@gmail.com',
-        to: req.body.email,
-        subject: 'Your One-time Password : ' + otp,
-        text: otp
-    };
+    
 
     const user = User.countDocuments({ email: req.body.email }, (err, user_count) => {
         const org = Org.countDocuments({ orgemail: req.body.email }, (err, org_count) => {
@@ -375,6 +399,13 @@ app.post("/generateOtp", (req, res) => {
 
                 let email = req.body.email;
                 let otp = otpGenerator.generate(6, { digits: true, upperCaseAlphabets: false, upperCaseAlphabets: false, specialChars: false });
+
+                var mailOptions = {
+                    from: 'daarav101@gmail.com',
+                    to: req.body.email,
+                    subject: 'Your One-time Password : ' + otp,
+                    text: otp
+                };
 
                 const newOtp = new Otp({
                     email: email,
@@ -398,6 +429,12 @@ app.post("/generateOtp", (req, res) => {
                 let email = req.body.email;
                 let otp = otpGenerator.generate(6, { digits: true, upperCaseAlphabets: false, upperCaseAlphabets: false, specialChars: false });
 
+                var mailOptions = {
+                    from: 'daarav101@gmail.com',
+                    to: req.body.email,
+                    subject: 'Your One-time Password : ' + otp,
+                    text: otp
+                };
 
                 const newOtp = new Otp({
                     email: email,

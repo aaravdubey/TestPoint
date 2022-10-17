@@ -19,8 +19,11 @@ body{
     }
   }
 #header{
-    padding: 1% 15%;
+    padding: 2% 15%;
     background-color: #21222D;
+}
+#header p{
+    margin: 0;
 }
 .testname{
     border: 0;
@@ -40,12 +43,16 @@ body{
     background-color: #1F4693;
     color: white;
 }
-
+.inst-font{
+    font-family: "Poppins", sans-serif;
+    font-size: 1rem;
+}
 
 .questions-container{
     padding: 1% 18% 3%;
     overflow: hidden;
     min-height: 90vh;
+    background-color: white;
     position: relative;
 }
 .questions-container::before{

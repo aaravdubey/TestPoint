@@ -83,6 +83,15 @@ textarea:focus{
     outline: 0;
     background-color:#F9FAF9;
 }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type=number]{
+    -moz-appearance: textfield;
+}
+
 /* .slider {
     width: 100%;
     display: flex;

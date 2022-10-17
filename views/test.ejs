@@ -28,7 +28,7 @@
       </div>
       <span id="totalCount" class="align-self-end" style="margin-right: 2%; "></span>
       <div class="flex-grow-1">
-          <a ><input type="text" name="testname" class="testname" id="testname" placeholder="Test Name" value="<%= email %>"> </a>
+          <a ><input type="text" name="testname" class="testname" id="testname" placeholder="Test Name"> </a>
       </div>
       
     </div>
@@ -50,8 +50,8 @@
 
       <div class="card">
         <div class="card-body">
-          <span style="font-size: x-large; line-height: 2; font-weight: 500;">Description <span style="font-size:small; color: gray;">(short test description displayed in test cards along with the test name)</span></span><br>
-        <textarea name="description" id=""  rows="1" style="width: 100%;" ></textarea>
+          <span style="font-size: x-large; line-height: 2; font-weight: 500;">Description <span style="font-size:small; color: gray;">(short test description displayed in test cards along with the test name, max 64 characters)</span></span><br>
+        <textarea name="description" id=""  rows="1" style="width: 100%;" maxlength="64"></textarea>
         
           <span style="font-size: x-large; line-height: 2; font-weight: 500;">Instructions <span style="font-size:small; color: gray;">(test instructions displayed before starting a test)</span></span><br>
         <textarea name="instructions" id=""  rows="4" style="width: 100%;"></textarea>
@@ -86,10 +86,15 @@
               <input type="text" id="newSubName" class="slide" style="width: 4rem; font-size: medium; margin: 0; padding: 5px 5px; border: 0; border-top-right-radius: 0; border-bottom-right-radius: 0;"><button style="border-top-right-radius: 10px; border-bottom-right-radius: 10px; margin: 0; padding: 5px;  border: 0; background-color: rgb(166, 171, 190); color: white;" type="button" onclick="addNewSub()" title="add new subject">+</button>
             </div>
           </div>
+          
           <!-- <div id="x">
             <button  style="border: 0; background-color: white; margin: 0; width: 200px;" type="button" id="addInpOP" onclick="showAddInp()"> +Add Other </button>
           </div> -->
-
+          <div style="margin-top: 0.9rem;">
+            <span style="font-size: x-large; line-height: 2; font-weight: 500; ">Duration </span> <br>
+            <input type="number" max="720" name="duration" style="background-color: #f7f7f7; border: 0; border-radius: 6px; padding: 0.2rem 0.5rem; width: 4rem; font-size: large;" value="0"> 
+            <span style="font-size:small; color: gray; font-weight: 500;">(in min, max 360 mins allowed)</span>
+          </div>
         
         
         </div>

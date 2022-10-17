@@ -31,27 +31,55 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
-          <h3 class="modal-title" id="staticBackdropLabel">Instructions</h3>
-
+          <span style="font-size: x-large;">Instructions</span>
         </div>
         <div class="modal-body">
-          <pre value="Instructions" class="flex-grow-1" style="font-family: Verdana; font-size: 1.1rem;"><%= inst %></pre>
+          <p value="Instructions" class="flex-grow-1 inst-font" style="white-space: pre-line"><%= inst %></p>
         </div>
         <div class="modal-footer">
 
-          <button type="button" class="create-btn" data-bs-dismiss="modal" >Start Test</button>
+          <button type="button" class="create-btn" data-bs-dismiss="modal" style="font-size:medium; font-weight: 500;"
+            onclick="timer()">Start Test</button>
         </div>
       </div>
     </div>
   </div>
 
   <form action="/taketest" method="post">
+
+    <div class="modal" tabindex="-1" id="staticBackdrop1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <span style="font-size: x-large;">Are You Sure ?</span>
+          </div>
+          <div class="modal-body">
+            You still have time left.. <br>
+            Do you want to submit the test ?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+            <button type="submit" class="create-btn" style="font-size:medium; font-weight: 500;" id="finish">Finish
+              test</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <section id="header" class="gradient-border1">
       <div class=" d-flex flex-row-reverse align-items-center">
+
         <div class="col-1" style="padding:0">
-          <button class="create-btn d-flex justify-content-end " type="submit">Submit</button>
+          <button class="create-btn d-flex justify-content-end " type="button" onclick="finish_test()">Submit</button>
         </div>
-        <span id="totalCount" class="align-self-end" style="margin-right: 2%; "></span>
+        <div class="col-2 timer  "
+          style="color: white;  color: lightgrey; font-size: larger; margin: 0 1rem; padding:0 1rem; text-align: right;"
+          id="sec">
+          <p><i class="fa-regular fa-clock" style="margin: 3%;"></i>
+            <%= timex %>.00 Min <p style="font-size:small; padding: 0; ">Time left</p>
+          </p>
+        </div>
+        <!-- <span id="totalCount" class="align-self-end" style="margin-right: 2%; "></span> -->
         <div class="flex-grow-1">
           <a class="testname" style="color: white; text-decoration: none;">
             <%= tstname %> <a>
@@ -75,10 +103,9 @@
       <div class="container-fluid" id="formulario">
 
 
-        <%for(i=0; i< arr.length-1; i++){ %>
+        <%for(i=0; i< arr.length-2; i++){ %>
           <div class="card" id="questions[<%=i%>]">
             <div class="card-body">
-
 
               <% for(j=1; j< arr[i].length-2; j++){ %>
                 <div class="d-flex ">
@@ -128,7 +155,8 @@
     </div>
   </form>
 
-  <button type="button" onclick="topFunction()" style="display: none;" class="btn btn-primary btn-floating btn-lg " id="btn-back-to-top">
+  <button type="button" onclick="topFunction()" style="display: none;" class="btn btn-primary btn-floating btn-lg "
+    id="btn-back-to-top">
     <i class="fas fa-arrow-up"></i>
   </button>
 
@@ -150,11 +178,79 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
   <script>
+    document.addEventListener('fullscreenchange', exitHandler);
+document.addEventListener('webkitfullscreenchange', exitHandler);
+document.addEventListener('mozfullscreenchange', exitHandler);
+document.addEventListener('MSFullscreenChange', exitHandler);
+
+function exitHandler() {
+    if (!document.fullscreenElement && !document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement) {
+      $("#staticBackdrop1").modal('show');
+    }
+} 
+
+    function requestFullScreen(element) {
+      // Supports most browsers and their versions.
+      var requestMethod = element.requestFullScreen || element.webkitRequestFullScreen || element.mozRequestFullScreen || element.msRequestFullScreen;
+
+      if (requestMethod) { 
+        requestMethod.call(element);
+      } else if (typeof window.ActiveXObject !== "undefined") { 
+        var wscript = new ActiveXObject("WScript.Shell");
+        if (wscript !== null) {
+          wscript.SendKeys("{F11}");
+        }
+      }
+    }
+
+    
+
     window.onload = function () {
-      OpenBootstrapPopup();
-    };
-    function OpenBootstrapPopup() {
       $("#staticBackdrop").modal('show');
+    };
+
+    function finish_test() {
+      $("#staticBackdrop1").modal('show');
+    };
+
+    window.history.pushState({ page: 1 }, "", "");
+
+    window.onpopstate = function (event) {
+      if (event) {
+        $("#staticBackdrop1").modal('show');
+      }
+      else {
+        // Continue user action through link or button
+      }
+    }
+    window.onunload = function () { null };
+
+    const startingMinutes = parseInt("<%=timex %>");
+    let time = startingMinutes * 60;
+    const countdownEl = document.getElementById('sec');
+    function timer() {
+      setInterval(updateCountdown, 1000);
+
+    }
+
+    function updateCountdown() {
+      var elem = document.body; 
+    requestFullScreen(elem);
+
+      const minutes = Math.floor(time / 60);
+      let seconds = time % 60;
+
+      // minutes = minutes < 10 ? '0' + minutes : minutes;
+      seconds = seconds < 10 ? '0' + seconds : seconds;
+      countdownEl.innerHTML = `<p><i class="fa-regular fa-clock" style="margin: 3%;"></i>${minutes}.${seconds} Min <p style="font-size:small; padding: 0;">Time left</p></p>`;
+      // <p><i class="fa-regular fa-clock" style="margin: 2%;"></i><%= timex %>.00 Min <p style="font-size:small; padding: 0;">Time left</p></p>
+      if (time != 0) {
+        time--;
+      }
+
+      if (time == 0) {
+        document.getElementById('finish').click();
+      }
     }
 
     // When the user scrolls down 20px from the top of the document, show the button

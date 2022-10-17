@@ -26,6 +26,7 @@
     "ejs": "^3.1.8",
     "express": "^4.18.1",
     "express-session": "^1.17.3",
+    "initials-avatar-generator": "^1.5.4",
     "mongoose": "^6.6.0",
     "nocache": "^3.0.4",
     "node-uuid": "^1.4.8",

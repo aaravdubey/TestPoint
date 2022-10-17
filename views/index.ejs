@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TestPoint</title>
+
+  <!-- bootstrap cdn -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+  <!-- fontawesome script -->
+  <script src="https://kit.fontawesome.com/9e675ed628.js" crossorigin="anonymous"></script>
+
+  <!-- css file -->
+  <link rel="stylesheet" href="css/index.css">
+
+</head>
+
+<body>
+  <!-- Button trigger modal -->
+ <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  Launch static backdrop modal
+</button>  -->
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" >
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Instructions</h5>
+        
+      </div>
+      <div class="modal-body">
+        <pre value="Instructions" class="flex-grow-1"><%= inst %></pre>
+      </div>
+      <div class="modal-footer">
+        
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="timer()">Start Test</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<form action="/" method="post">
+<!-- <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" >
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel1">Are u sure</h5>
+        
+      </div>
+      <div class="modal-body">
+        <pre value="Instructions" class="flex-grow-1">U still have time left, Do u want to submit?</pre>
+      </div>
+      <div class="modal-footer">
+        
+        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" id="finish">Finish Test</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- <div class="modal" tabindex="-1" id="staticBackdrop1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel1">Are u sure</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>U still have time left, Do u want to submit?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" id="finish">Finish test</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="modal" tabindex="-1" id="staticBackdrop1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <i class="fa-solid fa-crown"></i>
+        <p>U have successfully submittes quiz!</p>
+      </div>
+      <div class="modal-footer">
+        
+        <button type="submit" class="btn btn-primary" id="finish">Finish test</button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <section id="header">
+    <div class=" d-flex flex-row-reverse align-items-center">
+      <div class="timer">
+        <div class="timer_text">Time Left</div>
+        <div class="timer_sec">
+          <p id="sec"><%= timex %>  </p>
+        </div>
+      </div>
+      <div class="col-1" style="padding:0">
+        <button  class="btn btn-primary" type="button" onclick="finish_test()">SUBMIT</button>
+      </div>
+      <span id="totalCount" class="align-self-end" style="margin-right: 2%; "></span>
+      <div class="flex-grow-1">
+          <a class="testname" style="color: white; text-decoration: none;"><%= tstname %> <a>
+      </div>
+    </div>
+  </section>
+  <!-- 
+  <nav aria-label="...">
+    <ul class="pagination pagination-lg">
+      <li class="page-item active" aria-current="page">
+        <span class="page-link">1</span>
+      </li>
+    </ul>
+  </nav> -->
+
+
+
+  <div class="container-fluid questions-container">
+
+    <div class="container-fluid" id="formulario">
+
+      
+      <%for(i = 0; i< arr.length-1; i++){ %>
+        <div class="card" id="questions[<%=i%>]">
+          <div class="card-body">
+            
+          
+          <% for(j = 1; j< arr[i].length-2; j++){ %>
+            <div class="d-flex ">
+              
+                <span value="Question" class="question flex-grow-1"><%= arr[i][0] %></span>
+              <div class="align-self-center marksdiv">
+                
+                <span class="marksCounter"><%= arr[i][3] %> mark(s)</span>
+              </div>
+             
+            </div>
+            <ul class="list-group ">
+            <% if(j == 1){ %>
+                <% for(k = 0; k< arr[i][1].length; k++){ %>
+                  <li class="list-group-item" id="options[<%= i[k]%>]"> 
+                      <input type="checkbox" value="<%= arr[i][1][k] %>" class="correctAns" name="<%= i %>[]" id="op<%= i %><%= k %> ">
+                      <label for="op<%= i %><%= k %> " class="op" style="padding-left:5px; border-radius: 4px"><%= arr[i][1][k] %></label>
+                         
+                  </li>
+                <% } %>
+            <% } %> 
+          </ul>             
+        <% } %>
+          </div>
+        </div>
+    <% } %>
+           <br>
+          <!-- <a type="button" class="ansKey" style="font-size: large;" onclick="answerKey('questions[0]');">
+            <i class="fa-solid fa-circle-check" style="padding-right: 5px;"></i>Answer Key</a>
+          </div>
+
+
+          <div class="card-body" style="display: none;">
+            <ul class="list-group list-group-flush">
+            </ul>
+          </div> -->
+        </div>
+      </div>
+      <!-- <input type="submit" id="sub" value="Confirm"> -->
+    </div>
+  </form>
+    
+
+
+<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- bootstrap script -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+      integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+      crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+      integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
+      crossorigin="anonymous"></script>
+      <script src="JS\test.js"></script>
+
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+      <script type="text/javascript">
+        window.onload = function () {
+          $("#staticBackdrop").modal('show');
+        };
+        
+
+        function finish_test() {
+          $("#staticBackdrop1").modal('show');
+        };
+        
+        //  window.onbeforeunload = function (){
+        //  //$("#staticBackdrop1").modal('show');
+        //    let message = "Aarav Gandu"
+        //    return message;
+        //  };
+
+  //       $(document).ready(function() {
+  //     window.history.pushState(null, "", window.location.href);        
+  //     window.onpopstate = function() {
+  //         window.history.pushState(null, "", window.location.href);
+  //     };
+  // });
+
+
+window.history.pushState({page: 1}, "", "");
+
+window.onpopstate = function(event) {
+  if(event){
+    $("#staticBackdrop1").modal('show');
+  }
+  else{
+    // Continue user action through link or button
+  }
+}
+
+        window.onunload = function () {null};
+
+      const startingMinutes = parseInt("<%=timex %>");
+        let time = startingMinutes * 60;
+        const countdownEl = document.getElementById('sec');
+      function timer(){
+        setInterval(updateCountdown, 1000);
+        
+      }
+
+        function updateCountdown(){
+            const minutes = Math.floor(time / 60);
+            let seconds = time % 60;
+            
+            // minutes = minutes < 10 ? '0' + minutes : minutes;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+            countdownEl.innerHTML = `${minutes}:${seconds}`;
+            if(time != 0){
+              time --;
+            }
+
+            if(time == 0){
+              document.getElementById('finish').click();
+            }
+        }
+
+
+      </script>
+</body>
+
+</html>

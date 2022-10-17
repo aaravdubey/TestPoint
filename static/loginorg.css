@@ -136,3 +136,24 @@ html, body{
   .btn:hover {
     background-color: #2d58ad;
   }
+
+  .passrequirements{
+    /* width: 0; */
+    display: none;
+    font-size: small;
+    border: solid 1px rgb(174, 174, 174);
+    color: gray;
+    padding: 8px;
+    text-align: left;
+    background-color: white;
+    border-radius: 8px;
+    position:absolute;
+    right: 7rem;
+    z-index: 10;
+    transition:all 2s;
+  }
+
+  .displayrequirements{
+    display: block;
+    /* width: fit-content; */
+  }

@@ -99,7 +99,7 @@
           no tests attempts yet
         </div>
       <% } else { %>
-        <h3><%= result[0].test_name %> Leaderboard</h3> <br>
+        <h3 style="font-weight: 600; border: solid 1px #397494; border-width: 0 0 0 7px;  padding: 8px;"><%= result[0].test_name %> Leaderboard</h3> <br>
         <table class="table">
           <thead class=" text-light" style="background-color: #21222D;">
             <tr>
@@ -115,20 +115,20 @@
             <tr>
               <% if (rank == 1) { %>
                 <th scope="row" style="color:#85c8ed ;"><%= rank++ %> </th>
-                <td style="color:#85c8ed ;"><%=result[index].username%></td>
-              <td style="color:#85c8ed ;"><%=result[index].marks%></td>
+                <td style="color:#85c8ed ; font-weight: 600;"><%=result[index].username%></td>
+              <td style="color:#85c8ed ; font-weight: 600;"><%=result[index].marks%></td>
               <% } else if (rank == 2) { %>
                 <th scope="row" style="color:#6aa5c5 ;"><%= rank++ %> </th>
-                <td style="color:#6aa5c5 ;"><%=result[index].username%></td>
-              <td style="color:#6aa5c5 ;"><%=result[index].marks%></td>
+                <td style="color:#6aa5c5 ; font-weight: 600;"><%=result[index].username%></td>
+              <td style="color:#6aa5c5 ; font-weight: 600;"><%=result[index].marks%></td>
               <% } else if (rank == 3) { %>
                 <th scope="row" style="color:#397494 ;"><%= rank++ %> </th>
-                <td style="color:#397494 ;"><%=result[index].username%></td>
-              <td style="color:#397494 ;"><%=result[index].marks%></td>
+                <td style="color:#397494 ; font-weight: 600;"><%=result[index].username%></td>
+              <td style="color:#397494 ; font-weight: 600;"><%=result[index].marks%></td>
                 <% } else { %>
                   <th scope="row"><%= rank++ %> </th>
-                  <td ><%=result[index].username%></td>
-              <td ><%=result[index].marks%></td>
+                  <td style="font-weight: 600;"><%=result[index].username%></td>
+                  <td  style="font-weight: 600;"><%=result[index].marks%></td>
                  <% } %>  
               
               
