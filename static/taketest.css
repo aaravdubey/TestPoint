@@ -5,7 +5,7 @@ input {
 }
 body{
     background-color: rgb(246, 246, 246);
-    overflow-x: hidden;
+    overflow: hidden;
     animation: fadeInAnimation ease 1s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
@@ -19,7 +19,7 @@ body{
     }
   }
 #header{
-    padding: 2% 15%;
+    padding: 2% 18%;
     background-color: #21222D;
 }
 #header p{
@@ -49,9 +49,9 @@ body{
 }
 
 .questions-container{
-    padding: 1% 18% 3%;
-    overflow: hidden;
-    min-height: 90vh;
+    padding: 2% 18% 3%;
+    overflow: scroll;
+    height: 90vh;
     background-color: white;
     position: relative;
 }
@@ -133,7 +133,7 @@ input[type=checkbox]{
     padding: 10px;
 }
 .marksdiv{
-    margin: 0 2%;
+    /* margin: 0 %; */
 }
 .marksCounter{
     width: 2.65rem;

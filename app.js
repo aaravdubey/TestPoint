@@ -1,11 +1,11 @@
+require('dotenv').config()
 const express = require('express');
 var session = require('express-session');
 var Cookies = require('cookies')
 const bodyParser = require('body-parser');
 const app = express();
-const gpass = 'ijtmoqnicshfidzy';
+const gpass = process.env.GMAIL_PASS;
 const otpGenerator = require('otp-generator');
-var AvatarGenerator = require('initials-avatar-generator').AvatarGenerator;
 const mongoose = require('mongoose');
 var crypto = require('crypto');
 var uuid = require('node-uuid');
@@ -173,13 +173,19 @@ app.post('/taketest', async function (req, res) {
 })
 
 app.get("/lead", async (req, res) => {
+    let username = "...";
+    if(req.session.orgemail){
+        username = req.session.orgemail;
+    }else if(req.session.email){
+        username = req.session.email;
+    }
     await Result.find({ test_id: req.session.testidforleaderb }, function (err, result) {
         if (err) {
             console.log(err);
         } else {
             res.render('leaderboard1', {
                 result: result,
-                username: req.session.username
+                username: username
             });
             // console.log(arr[1][1][0]);
         }
