@@ -29,7 +29,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("static"));
 app.set('view engine', 'ejs');
 
-mongoose.connect("mongodb+srv://admin-aarav:testpoint@cluster0.3hbsmke.mongodb.net/testpoint", { useNewUrlParser: true });
+mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true });
 
 const testSchema = mongoose.Schema({
     questions: String,
